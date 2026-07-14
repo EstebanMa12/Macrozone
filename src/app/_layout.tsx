@@ -1,18 +1,39 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useColorScheme } from 'react-native';
+import {
+  migrateLegacyMeals,
+  useMealStore,
+} from "@/store/useMealStore";
+import {
+  migrateLegacyReminders,
+  useSettingsStore,
+} from "@/store/useSettingsStore";
+import { syncMealReminders } from "@/utils/notifications";
+import { Stack } from "expo-router";
+import { useEffect } from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
+export default function RootLayout() {
+  const mealHydrated = useMealStore((state) => state.isHydrated);
+  const settingsHydrated = useSettingsStore((state) => state.isHydrated);
+  const remindersEnabled = useSettingsStore((state) => state.remindersEnabled);
 
-SplashScreen.preventAutoHideAsync();
+  useEffect(() => {
+    void migrateLegacyMeals();
+    void migrateLegacyReminders();
+  }, []);
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  useEffect(() => {
+    if (!mealHydrated || !settingsHydrated) {
+      return;
+    }
+
+    void syncMealReminders(remindersEnabled);
+  }, [mealHydrated, settingsHydrated, remindersEnabled]);
+
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
-    </ThemeProvider>
+    <SafeAreaProvider>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" />
+      </Stack>
+    </SafeAreaProvider>
   );
 }
