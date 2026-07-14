@@ -4,6 +4,16 @@ MacroZone is a React Native (Expo) macro tracker for logging meals, monitoring d
 
 Built as a portfolio-ready Expo SDK 57 app with local persistence, Zustand state management, and a clean layered architecture.
 
+## Screenshots
+
+<p align="center">
+  <img src="./assets/screenshots/iPhone-14-PRO-MAX-localhost.webp" width="24%" alt="Home dashboard" />
+  <img src="./assets/screenshots/iPhone-14-PRO-MAX-2.webp" width="24%" alt="Home dashboard" />
+  <img src="./assets/screenshots/iPhone-14-PRO-MAX-3.webp" width="24%" alt="Add meal" />
+  <img src="./assets/screenshots/iPhone-14-PRO-MAX-4.webp" width="24%" alt="Meal history" />
+  <img src="./assets/screenshots/iPhone-14-PRO-MAX-5.webp" width="24%" alt="Weekly stats" />
+</p>
+
 ## Features
 
 - Daily macro dashboard (calories, protein, carbs, fat)
@@ -46,6 +56,7 @@ npm start
 ```
 
 Then open:
+
 - Android emulator
 - iOS simulator
 - Expo Go
@@ -53,15 +64,15 @@ Then open:
 
 ## Scripts
 
-| Script | Description |
-| --- | --- |
-| `npm start` | Start Expo dev server |
-| `npm run android` | Open Android |
-| `npm run ios` | Open iOS |
-| `npm run web` | Open web |
-| `npm test` | Run unit tests |
-| `npm run typecheck` | TypeScript check |
-| `npm run lint` | Expo lint |
+| Script              | Description           |
+| ------------------- | --------------------- |
+| `npm start`         | Start Expo dev server |
+| `npm run android`   | Open Android          |
+| `npm run ios`       | Open iOS              |
+| `npm run web`       | Open web              |
+| `npm test`          | Run unit tests        |
+| `npm run typecheck` | TypeScript check      |
+| `npm run lint`      | Expo lint             |
 
 ## Product Notes
 
@@ -78,6 +89,7 @@ npm test
 ```
 
 Coverage focuses on:
+
 - date helpers
 - macro totals / progress / weekly series
 - meal form validation
